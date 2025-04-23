@@ -13,38 +13,47 @@
     <div id="app"></div>
 
     <script type="text/babel">
-      
-        const TabelaBebidas = ({ titulo, cabecalhos }) => {
-            const { cabecalho1, cabecalho2 } = cabecalhos; 
-
+        // Componente para montar a tabela com cabeçalho e corpo dinâmicos
+        const TabelaBebidas = ({ titulo, cabecalhos, dados }) => {
             return (
                 <div>
                     <h1>{titulo}</h1>
                     <table id="tabela" border="1">
                         <thead>
                             <tr>
-                                <th>{cabecalho1}</th>
-                                <th>{cabecalho2}</th>
+                                {cabecalhos.map((cabecalho, index) => (
+                                    <th key={index}>{cabecalho}</th>
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Havana</td>
-                                <td>Engenho Anísio Santiago</td>
-                            </tr>
+                            {dados.map((linha, indexLinha) => (
+                                <tr key={indexLinha}>
+                                    {linha.map((valor, indexColuna) => (
+                                        <td key={indexColuna}>{valor}</td>
+                                    ))}
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
             );  
         };
 
-        const valoresCabecalhos = {
-            cabecalho1: "Nome",
-            cabecalho2: "Marca"
-        };
+        // Definição do cabeçalho
+        const valoresCabecalhos = ["Nome", "Marca", "Preço", "Quantidade"];
 
+        // Definição do conteúdo da tabela (dados)
+        const valoresDados = [
+            ["Havana", "Engenho Anísio Santiago", "R$ 150,00", 10],
+            ["Jack Daniel's", "Brown-Forman", "R$ 250,00", 5],
+            ["Chivas Regal", "Chivas Brothers", "R$ 350,00", 8],
+            ["Coca-Cola", "The Coca-Cola Company", "R$ 5,00", 50]
+        ];
+
+        // Renderizando o componente
         ReactDOM.render(
-            <TabelaBebidas titulo="Lista de Bebidas" cabecalhos={valoresCabecalhos} />,
+            <TabelaBebidas titulo="Lista de Bebidas" cabecalhos={valoresCabecalhos} dados={valoresDados} />,
             document.getElementById("app")
         );
     </script>
