@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ReceitaReact - 3</title>      
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      
+        const TabelaBebidas = ({ titulo, cabecalhos }) => {
+            const { cabecalho1, cabecalho2 } = cabecalhos; 
+
+            return (
+                <div>
+                    <h1>{titulo}</h1>
+                    <table id="tabela" border="1">
+                        <thead>
+                            <tr>
+                                <th>{cabecalho1}</th>
+                                <th>{cabecalho2}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Havana</td>
+                                <td>Engenho Anísio Santiago</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );  
+        };
+
+        const valoresCabecalhos = {
+            cabecalho1: "Nome",
+            cabecalho2: "Marca"
+        };
+
+        ReactDOM.render(
+            <TabelaBebidas titulo="Lista de Bebidas" cabecalhos={valoresCabecalhos} />,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+
+</html>
